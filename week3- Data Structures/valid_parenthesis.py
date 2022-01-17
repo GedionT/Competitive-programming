@@ -23,4 +23,7 @@ class Solution:
             return True
 
 
-if __name__ == = "__main__":
+if __name__ == "__main__":
+    given = "()"
+    s = Solution()
+    print(s.isValid(given))
