@@ -34,9 +34,6 @@ class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
 
         # check if it is not empty
-        if not nums1 or not nums2:
-            return []
-
         greater_dict = {}
 
         stack = [nums2[0]]
