@@ -44,8 +44,8 @@ class Solution:
                 greater_dict[stack.pop()] = nums2[i]
             stack.append(nums2[i])
 
-        for j in stack:
-            greater_dict[j] = -1
+        while stack:
+            greater_dict[stack.pop()] = -1
 
         return [greater_dict[i] for i in nums1]
 
