@@ -25,7 +25,7 @@ class Solution:
         temp = head
 
         # traverse from the start to the middle
-        while(size < counter):
+        while size < counter:
             size += 1
             temp = temp.next
 
