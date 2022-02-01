@@ -17,6 +17,28 @@ class Solution:
         return cur_result + next_result
 
 
+
+        subset = []
+        res = []
+
+        def dfs(i):
+            # basecase 
+            if i == len(nums):
+                res.append(subset[:])
+                return
+            
+            # recursive case
+            subset.append(nums[i])
+
+            dfs(i+1)
+
+            subset.pop()
+            dfs(i+1)
+
+        dfs(0)
+        return res
+
+
 if __name__ == "__main__":
     s = Solution()
     print(s.subsets([1, 2, 3]))
