@@ -13,12 +13,8 @@ class Solution:
                 left = mid + 1
             elif nums[mid] > target:
                 right = mid - 1
-            elif nums[mid] == target:
-                return mid
             else:
-                if left == right:
-                    return left
-                return left + 1
+                return mid
             
         
         return -1
