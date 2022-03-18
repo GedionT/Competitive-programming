@@ -11,25 +11,8 @@ def increase_and_copy():
 
     """
     
-    n = int(input())
-    a = list(map(int, input().strip().split()))
 
-    # binary search
-    left = 0
-    right = len(a) - 1
-
-    while left <= right:
-        mid = left + (right - left) // 2
-
-        if sum(a[:mid + 1]) >= n:
-            right = mid - 1
-        else:
-            left = mid + 1
-
-    if sum(a[:mid + 1]) >= n:
-        return mid
-    else:
-        return mid + 1
+    
 
 
 if __name__ == "__main__":
