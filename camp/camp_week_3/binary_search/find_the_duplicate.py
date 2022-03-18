@@ -14,16 +14,16 @@ class Solution:
         right = len(nums) - 1
         
         while left <= right:
-            cur = left + (right - left) // 2
+            mid = left + (right - left) // 2
             count = 0
 
-            # Count how many numbers are less than or equal to 'cur'
-            count = sum(num <= cur for num in nums)
+            # Count how many numbers are less than or equal to 'mid'
+            count = sum(num <= mid for num in nums)
             
-            if count > cur:
-                duplicate = cur
-                right = cur - 1
+            if count > mid:
+                duplicate = mid
+                right = mid - 1
             else:
-                left = cur + 1
+                left = mid + 1
                 
         return duplicate
