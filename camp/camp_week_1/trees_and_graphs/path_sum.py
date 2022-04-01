@@ -16,7 +16,7 @@ class Solution:
         
         if node:
             
-            # recurence relation
+            # recurrence relation
             path.append(node.val)
             
             # base case
