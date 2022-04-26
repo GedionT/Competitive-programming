@@ -2,11 +2,23 @@ from collections import Counter
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         
+        # Alternative two with set
         
-        count_dict = Counter(nums)
+        visited = set()
         
-        for k, v in count_dict.items():
-            if v > 1:
+        for num in nums:
+            if num in visited:
                 return True
+            else:
+                visited.add(num)
         
-        return False
+        
+        # Alternative one with Counter dictionary
+#         count_dict = Counter(nums)
+        
+#         for k, v in count_dict.items():
+#             if v > 1:
+#                 return True
+        
+#         return False
+
