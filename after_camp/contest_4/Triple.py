@@ -1,21 +1,17 @@
 from typing import List
-from collections import Counter
+
 
 def triple(arr: List) -> int:
-    
-    
-    count_dict = Counter(arr)
-    
-    result = 0
 
-    for element, count in count_dict.items():
-        if count >= 3:
-            result = element
+    arr.sort()
 
-    if result == 0:
-        return -1
-        
-    return result
+    # count any number appearing more than 3 times
+    for i in range(len(arr)-2):
+        if arr[i] == arr[i+1] == arr[i+2]:
+            return arr[i]
+
+    return -1
+
 
 num_test = int(input())
 
@@ -24,9 +20,3 @@ for _ in range(num_test):
     arr = list(map(int, input().split()))
 
     print(triple(arr))
-
-
-
-    
-
-
