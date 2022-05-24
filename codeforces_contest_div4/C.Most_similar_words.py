@@ -1,0 +1,100 @@
+
+
+def min_move(strings, n, m):
+
+    min_move = float('inf')
+    sub_min_move = 0
+
+    for i in range(n-1):
+        for j in range(i+1, n):
+            for k in range(m):
+                if strings[i][k] != strings[j][k]:
+                    sub_min_move += abs(ord(strings[i]
+                                            [k]) - ord(strings[j][k]))
+            min_move = min(min_move, sub_min_move)
+            sub_min_move = 0
+
+    return abs(min_move)
+
+
+if __name__ == "__main__":
+
+    cases = int(input())
+
+    for _ in range(cases):
+        n, m = map(int, input().split())
+        strings = []
+        for i in range(n):
+            strings.append(input())
+        print(min_move(strings, n, m))
+
+
+"""
+You are given n words of equal length m, consisting of lowercase Latin alphabet letters. The i-th word is denoted si.
+
+In one move you can choose any position in any single word and change the letter at that position to the previous or next letter in alphabetical order. For example:
+
+you can change 'e' to 'd' or to 'f';
+'a' can only be changed to 'b';
+'z' can only be changed to 'y'.
+The difference between two words is the minimum number of moves required to make them equal. For example, the difference between "best" and "cost" is 1+10+0+0=11.
+
+Find the minimum difference of si and sj such that (i<j). In other words, find the minimum difference over all possible pairs of the n words.
+
+Input
+The first line of the input contains a single integer t (1≤t≤100) — the number of test cases. The description of test cases follows.
+
+The first line of each test case contains 2 integers n and m (2≤n≤50, 1≤m≤8) — the number of strings and their length respectively.
+
+Then follows n lines, the i-th of which containing a single string si of length m, consisting of lowercase Latin letters.
+
+Output
+For each test case, print a single integer — the minimum difference over all possible pairs of the given strings.
+
+
+
+Example
+inputCopy
+6
+2 4
+best
+cost
+6 3
+abb
+zba
+bef
+cdu
+ooo
+zzz
+2 7
+aaabbbc
+bbaezfe
+3 2
+ab
+ab
+ab
+2 8
+aaaaaaaa
+zzzzzzzz
+3 1
+a
+u
+y
+outputCopy
+11
+8
+35
+0
+200
+4
+Note
+For the second test case, one can show that the best pair is ("abb","bef"), which has difference equal to 8, which can be obtained in the following way: change the first character of the first string to 'b' in one move, change the second character of the second string to 'b' in 3 moves and change the third character of the second string to 'b' in 4 moves, thus making in total 1+3+4=8 moves.
+
+For the third test case, there is only one possible pair and it can be shown that the minimum amount of moves necessary to make the strings equal is 35.
+
+For the fourth test case, there is a pair of strings which is already equal, so the answer is 0.
+
+
+
+
+"""
