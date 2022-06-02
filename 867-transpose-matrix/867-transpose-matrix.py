@@ -16,9 +16,9 @@ class Solution:
         
         T = [[0] * m for _ in range(n) ]
         
-        for r, row in enumerate(matrix):
-            for c, val in enumerate(row):
-                T[c][r] = val
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                T[c][r] = matrix[r][c]
         
         return T
         
