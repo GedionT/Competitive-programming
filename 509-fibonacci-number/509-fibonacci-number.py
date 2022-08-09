@@ -1,15 +1,11 @@
 class Solution:
-    def fib(self, n: int, saved = {}) -> int:
+    def fib(self, n: int) -> int:
         
-        if n in saved:
-            return saved[n]
+        last2, last = 0, 1
         
-        if n == 0:
-            return 0
+        for i in range(n):
+            last2, last = last, last2 + last
         
-        if n <= 2:
-            return 1
+        return last2
         
-        s = self.fib(n-1, saved) + self.fib(n-2, saved)
-        saved[n] = s
-        return s
+        
