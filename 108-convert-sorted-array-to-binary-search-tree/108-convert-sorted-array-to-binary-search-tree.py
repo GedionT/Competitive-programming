@@ -11,7 +11,7 @@ class Solution:
         root = TreeNode(nums[mid])
         
         def bst(numms, parent):
-            if len(numms) == 0:
+            if not numms:
                 return None
             
             mid = math.ceil((len(numms) + 1 )/ 2) - 1
