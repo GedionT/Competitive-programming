@@ -9,22 +9,17 @@ class Node:
 class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         
-        if not root:
-            return []
+        d = defaultdict(list)
         
-        ans = []
-        queue = deque([root]) 
-        
-        while queue:
-            ans.append([ i.val for i in queue ])
+        def dfs(node, level):
+            if not node: return
             
-            n = len(queue)
-            for i in range(n):
-                curr = queue.popleft()
-                
-                for child in curr.children:
-                    if child:
-                        queue.append(child)
-                        
-    
-        return ans
+            d[level].append(node.val)
+            
+            for child in node.children:
+                if child:
+                    dfs(child, level+1)
+            
+        dfs(root, 0)    
+        return [ d[i] for i in d ] 
+            
