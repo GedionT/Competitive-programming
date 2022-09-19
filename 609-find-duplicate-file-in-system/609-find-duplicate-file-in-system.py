@@ -9,7 +9,8 @@ class Solution:
             
             for file in files:
                 content = file.split("(")
-                dup[content[1]].append(f'{root}/{content[0]}')
+                data = content[1]
+                dup[data[:-1]].append(f'{root}/{content[0]}')
         
         ans = []
         for k in dup:
