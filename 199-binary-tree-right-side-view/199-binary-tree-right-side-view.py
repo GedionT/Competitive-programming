@@ -13,7 +13,7 @@ class Solution:
         while level:
             
             size = len(level)
-            temp = []
+            temp = None
             
             for i in range(size):
                 
@@ -22,15 +22,15 @@ class Solution:
                 if not curr:
                     continue 
                     
-                temp.append(curr.val)
+                temp = curr.val
                 
                 if curr.left:
                     level.append(curr.left)
                 if curr.right:
                     level.append(curr.right)
                     
-            if temp:    
-                res.append(temp[-1])
+            if temp is not None:    
+                res.append(temp)
         
         return res
             
