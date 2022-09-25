@@ -1,15 +1,18 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if numRows == 1:
-            return s
         
-        rows = [''] * numRows
-        cur_row, down = 0, 0
-
-        for c in s:
-            rows[cur_row] += c
-            if cur_row == 0 or cur_row == numRows-1:
-                down ^= 1
-            cur_row += 1 if down else -1
+        if numRows == 1: return s
         
-        return ''.join([row for row in rows])
+        res = ""
+        
+        for r in range(numRows):
+            increment = 2*(numRows-1)
+            for i in range(r, len(s), increment):
+                res += s[i]
+                
+                if (r>0 and r < numRows -1 and i + increment - 2 * r < (len(s))):
+                    res += s[i+increment - 2 * r]
+                    
+                # time complexity will be o(n) n = len str so not inefficient
+        
+        return res
