@@ -10,15 +10,7 @@ class Solution:
            2: 3
         """
         
-        intersec = {}
+        n1 = set(nums1)
+        n2 = set(nums2)
         
-        for num in nums1:
-            if num not in intersec:
-                intersec[num] = 1
-        
-        ans = []
-        for num in nums2:
-            if num in intersec and num not in ans:
-                ans.append(num)
-                
-        return ans
+        return list(n1 & n2)
