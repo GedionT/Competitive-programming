@@ -9,10 +9,22 @@ class TimeMap:
     def get(self, key: str, timestamp: int) -> str:            
         sub = self.time_series[key]
         
-        for i in range(len(sub)-1, -1, -1):
-            if sub[i][0] <= timestamp:
-                return sub[i][1]
-        return ""
+        # alt one: move from r to left
+        # for i in range(len(sub)-1, -1, -1):
+        #     if sub[i][0] <= timestamp:
+        #         return sub[i][1]
+        
+        left = 0
+        right = len(sub)
+        
+        while left < right:
+            mid = (left+right)//2
+            if self.time_series[key][mid][0] <= timestamp:
+                left = mid + 1
+            else:
+                right = mid
+        
+        return "" if right == 0 else self.time_series[key][right-1][1]
 
 
 # Your TimeMap object will be instantiated and called as such:
