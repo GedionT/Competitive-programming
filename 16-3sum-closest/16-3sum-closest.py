@@ -6,6 +6,10 @@ class Solution:
         
 
         for i in range(len(nums)-2):
+            # update: ignore the duplicate numbers
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+                
             l = i + 1
             r = len(nums)-1
             
@@ -22,5 +26,6 @@ class Solution:
                     return res
         
         return res
+        
         
         
