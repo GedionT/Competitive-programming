@@ -1,17 +1,14 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        match = defaultdict(list)
-        
-        for i, st in enumerate(strs):
-            match[''.join(sorted(st))].append(i)
+        match = {}
 
-        ans = []
-        
-        for m in match:
-            temp = []
-            for idx in match[m]:
-                temp.append(strs[idx])
-            ans.append(temp)
-        
-        return ans
+        for string in strs:
+            sorted_string = ''.join(sorted(string))
+
+            if sorted_string not in match:
+                match[sorted_string] = []
+
+            match[sorted_string].append(string)
+
+        return list(match.values())
