@@ -1,17 +1,21 @@
 class Solution:
-    def breakPalindrome(self, p: str) -> str:
+    def breakPalindrome(self, palindrome: str) -> str:
+        if len(palindrome) == 1:
+            return ""
         
+        l, r = 0, len(palindrome)-1
+        pal = list(palindrome)
         
-        n = len(p)
-        if n < 2: return ''
-        
-        for i in range(n//2):
+        while l < r:
+            if pal[l] != "a":
+                pal[l] = "a"
+                return "".join(pal)
             
-            if p[i] != 'a':
-                p = p[:i] + 'a' + p[i+1:]
-                break
-                
-        else: p = p[:-1] + 'b'
+            l += 1
+            r -= 1
             
-        return p
+        # if it's an all 'a' 
+        pal[-1] = "b"
+        
+        return "".join(pal)
             
