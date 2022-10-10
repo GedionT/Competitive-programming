@@ -20,8 +20,8 @@ class Solution:
             
             dfs(root.left)
             
-        dfs(root)
-        
-        return root
+            return root
+            
+        return dfs(root)
         
         
