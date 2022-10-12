@@ -10,33 +10,38 @@ class Solution:
         Do not return anything, modify root in-place instead.
         """
         
-        res = []
+        inorder = []
         
         def dfs(root):
             if not root:
                 return
-            
+        
             dfs(root.left)
-            res.append(root.val)
-            dfs(root.right)
                 
+            inorder.append(root.val)
+            
+            dfs(root.right)
+            
+        
         dfs(root)
         
-        res.sort()
+        inorder.sort()
         
         self.idx = 0
-        
         def fix(root):
             if not root:
                 return
             
             fix(root.left)
-            if root.val != res[self.idx]:
-                root.val = res[self.idx]
-                self.idx += 1
-            else:
-                self.idx += 1
-            fix(root.right)
             
-        fix(root)
+            if root.val != inorder[self.idx]:
+                root.val = inorder[self.idx]
+            self.idx += 1
+            
+            fix(root.right)
         
+        
+        fix(root)
+            
+ 
+                
