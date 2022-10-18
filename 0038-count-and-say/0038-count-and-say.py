@@ -15,10 +15,8 @@ class Solution:
                     sol += str(sub)+str(n[left])
                     left = right
 
-            if left == right:
-                sol += str(1)+str(n[left])
-            else:
-                sol += str(right-left+1)+str(n[left])
+
+            sol += str(right-left+1)+str(n[left])
 
             return sol
         
