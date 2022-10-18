@@ -22,8 +22,8 @@ class Solution:
 
             return sol
         
-        ans = ["1"]
+        last = "1"
         for i in range(1, n):
-            ans.append(helper(int(ans[i-1])))
+            last = helper(int(last))
         
-        return ans[-1]
+        return last
