@@ -1,13 +1,11 @@
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        return self.helper(num, 0)
+        count = 0
+        while num:
+            if num % 2 == 0:
+                num //= 2 
+            else:
+                num -= 1
+            count += 1
         
-    
-    def helper(self, num: int, steps: int) -> int:
-        if num == 0:
-            return steps
-        
-        if num % 2 == 0:
-            return self.helper(num//2, steps+1)
-        
-        return self.helper(num-1, steps+1)
+        return count
