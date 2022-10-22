@@ -1,10 +1,6 @@
 class Solution:
     
     def minWindow(self, s: str, t: str) -> str:
-        
-        if not t or not s:
-            return ""
-
         # Dictionary which keeps a count of all the unique characters in t.
         dict_t = Counter(t)
 
