@@ -1,21 +1,15 @@
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        # if sum(nums) < target: # alt edge case handler
-        #     return 0
-        
-        prefix = [0]
-        
-        for num in nums:
-            prefix.append(prefix[-1] + num)
-            
-        l, r = 0, 1   
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:            
         min_window = float('inf')
+        left = 0   
+        cumulate = 0
         
-        while r < len(prefix):            
-            if prefix[r]-prefix[l] >= target:
-                min_window = min(min_window, (r-l))
-                l += 1
-            else:
-                r += 1
-
-        return min_window if type(min_window) == int else 0
+        for i in range(len(nums)):
+            cumulate += nums[i]
+            
+            while cumulate >= target:
+                min_window = min(min_window, ((i+1) - left))
+                cumulate -= nums[left]
+                left += 1
+                
+        return min_window if min_window != float('inf') else 0
