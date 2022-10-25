@@ -6,14 +6,12 @@ class Solution:
 
         # edge case
         if s == goal:
-            s_count = Counter(s)
-
-            for ch in s_count:
-                if s_count[ch] >= 2:
+            seen = set()
+            for ch in s:
+                if ch in seen:
                     return True
+                seen.add(ch)
             return False
-
-        s = list(s)
 
         # generalized two pointer solution
         not_similar = []
@@ -28,5 +26,4 @@ class Solution:
             
             ptr += 1
 
-        print(not_similar)
         return len(not_similar) == 2 and not_similar[0] == not_similar[1][::-1]
