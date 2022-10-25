@@ -3,8 +3,6 @@ class Solution:
         if len(s) != len(goal):
             return False
 
-        s = list(s)
-        goal = list(goal)
 
         # edge case
         if s == goal:
@@ -15,24 +13,20 @@ class Solution:
                     return True
             return False
 
+        s = list(s)
 
         # generalized two pointer solution
-        not_similar_s = []
-        not_similar_goal = []
-
+        not_similar = []
         ptr = 0
 
         while ptr < len(s):
             if s[ptr] != goal[ptr]:
-                not_similar_s.append(s[ptr])
-                not_similar_goal.append(goal[ptr])
-
+                not_similar.append((s[ptr], goal[ptr]))
+                                   
+            if len(not_similar) > 2:
+                return False 
+            
             ptr += 1
 
-        if len(not_similar_s) > 2:
-            return False
-
-        if set(not_similar_s) == set(not_similar_goal):
-            return True
-
-        return False
+        print(not_similar)
+        return len(not_similar) == 2 and not_similar[0] == not_similar[1][::-1]
