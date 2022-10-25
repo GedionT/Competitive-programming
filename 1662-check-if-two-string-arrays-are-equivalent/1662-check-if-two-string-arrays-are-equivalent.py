@@ -4,8 +4,4 @@ class Solution:
 
         
     def buildString(self, word: List[str]) -> str:
-        stringfy = ""        
-        for each in word:
-            for ch in each:
-                stringfy += ch          
-        return stringfy
+        return ''.join(word)
