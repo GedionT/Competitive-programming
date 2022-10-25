@@ -8,21 +8,21 @@ class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
         self.max = 0
-        
-        def countDiameter(root):
+    
+        def findDiameter(node):
             # handle base case
-            if not root:
+            if not node:
                 return 0
             
+            left = findDiameter(node.left)
+            right = findDiameter(node.right)
             
-            left = countDiameter(root.left)
-            right = countDiameter(root.right)
+            self.max = max(self.max, left+right)
             
-            self.max = max(self.max, (right + left))
-            
-            return max(left, right) + 1
+            return max(left,right)+1
         
         
-        countDiameter(root)
         
+        findDiameter(root)
         return self.max
+        
