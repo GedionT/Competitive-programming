@@ -9,16 +9,20 @@ class Solution:
         
         self.max = 0
         
-        def dfs(node):
-            if not node:
+        def countDiameter(root):
+            # handle base case
+            if not root:
                 return 0
             
-            left = dfs(node.left)
-            right = dfs(node.right)
             
-            self.max = max(self.max, left + right)
-            return 1 + max(left, right)
+            left = countDiameter(root.left)
+            right = countDiameter(root.right)
+            
+            self.max = max(self.max, (right + left))
+            
+            return max(left, right) + 1
         
-        dfs(root)
+        
+        countDiameter(root)
+        
         return self.max
-            
