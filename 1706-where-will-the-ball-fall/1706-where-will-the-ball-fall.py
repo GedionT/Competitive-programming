@@ -10,10 +10,7 @@ class Solution:
             
             elif grid[row][col]==-1 and col-1>=0 and grid[row][col-1]==-1:
                 return hasStuckDfs(row+1,col-1)
-            
-#             elif grid[row][col]==1 and col+1>=len(grid[0]):
-#                 return -1
-            
+
             else:
                 return -1
                 
