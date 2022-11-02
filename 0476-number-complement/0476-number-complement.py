@@ -1,14 +1,15 @@
 class Solution:
     def findComplement(self, num: int) -> int:
         
-        ans = 0
-        shift_count = 0
+        ans = ""
         
+        # shift the number by 1 each round (sliding the number)
+        # do an and with one to look at the last digit and do state change
         while num:
             if num & 1 == 0:
-                ans = ans | 1 << shift_count
-            
-            shift_count += 1
+                ans = "1" + ans
+            else:
+                ans = "0" + ans
             num = num >> 1
         
-        return ans
+        return int(ans, 2)
