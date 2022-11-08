@@ -1,9 +1,8 @@
 class Solution:
     def checkBit(self, n, i):
-        return (n & (1<<i))!=0
+        return (n & (1<<i)) != 0
     
     def setBitPos(self, n):
-        # return xor & -xor
         for i in range(32):
             if self.checkBit(n, i):
                 return i
@@ -15,13 +14,13 @@ class Solution:
             xor ^= n
         
         setBit = self.setBitPos(xor)  
-        x1, x2 = 0, 0
+        n1 = n2 = 0
         
-        for i in range(len(nums)):
-            if self.checkBit(nums[i], setBit):
-                x1^=nums[i]
+        for idx in range(len(nums)):
+            if self.checkBit(nums[idx], setBit):
+                n1^=nums[idx]
             else:
-                x2^=nums[i]
+                n2^=nums[idx]
         
-        return [x1, x2]
+        return [n1, n2]
         
