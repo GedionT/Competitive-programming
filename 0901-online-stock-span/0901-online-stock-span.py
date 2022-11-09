@@ -1,10 +1,4 @@
 class StockSpanner:
-    """
-        
-        100 [80 [[60 70] 60 75]  85]
-         1    1   1  2    1  4   6
-      
-    """
     def __init__(self):
         self.stocks = []
 
