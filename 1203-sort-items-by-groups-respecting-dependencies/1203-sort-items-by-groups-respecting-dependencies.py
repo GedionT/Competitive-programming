@@ -1,32 +1,29 @@
 class Solution:
     def sortItems(self, n: int, m: int, group: List[int], beforeItems: List[List[int]]) -> List[int]:
         
-        # assign group for groupless elements (for implementation sake)
-        # i.e. each groupless element gets a unique group as they can be intermingled between groups
-        # i.e. they don't need to be together
         for g in range(len(group)):
             if group[g] == -1:
                 group[g] = m
                 m += 1
                 
         # create an item and group graph
-        groupGraph = { i: [] for i in range(m) }   # can use a list of list instead since it's a 0-n numbering
-        itemGraph = { i: [] for i in range(n) }
-            
-        # adjust group edge based on the dependency of beforeItems
-        # adjust graph edge of each element based on beforeItems
+        groupGraph = [ [] for i in range(m) ]   
+        itemGraph = [ [] for i in range(n) ]
+        gIndeg = [0]*len(groupGraph)
+        iIndeg = [0]*len(itemGraph)
+        
         for idx in range(n):
             for each in beforeItems[idx]:
                 if group[each] != group[idx]:
-                    groupGraph[group[each]].append(group[idx])  # can do 2 birds one stone by calc indeg 
-                itemGraph[each].append(idx) # calc indeg here as well and pass to util func of topsort
-
+                    groupGraph[group[each]].append(group[idx]) 
+                    gIndeg[group[idx]] += 1
+                itemGraph[each].append(idx) 
+                iIndeg[idx] += 1 
         
         # topSort the group ordering and item ordering
-        groupOrder = self.topSort(groupGraph)        
-        itemOrder = self.topSort(itemGraph)
+        groupOrder = self.topSort(groupGraph, gIndeg)        
+        itemOrder = self.topSort(itemGraph, iIndeg)
         
-        # if a cycle is detected in groups or items, return []
         if not groupOrder or not itemOrder:
             return []
         
@@ -38,31 +35,16 @@ class Solution:
         return [i for grp in groupOrder for i in group_items[grp]]
                 
         
-    def topSort(self, graph):
-        """
-        Util function for topsorting using kahn's algorithm
-        O(v+e)
-        """
-        indeg = [0]*len(graph)
-
-        # count incoming degree
-        for node in graph:
-            for val in graph[node]:
-                indeg[val] += 1
-
+    def topSort(self, graph, indeg):      
         q = deque([])
 
-        # process nodes without indegree into queue
         for idx in range(len(indeg)):
             if indeg[idx] == 0:
                 q.append(idx)
 
-        # top sorting using bfs
         order = []
-
         while q:
-            size = len(q)
-            for i in range(size):
+            for i in range(len(q)):
                 curr = q.popleft()
                 order.append(curr)
 
@@ -71,7 +53,6 @@ class Solution:
                     if indeg[node] == 0:
                         q.append(node)
 
-        # graph contains cycle ret [] else topsort list             
         return order if len(order) == len(graph) else []
     
         
