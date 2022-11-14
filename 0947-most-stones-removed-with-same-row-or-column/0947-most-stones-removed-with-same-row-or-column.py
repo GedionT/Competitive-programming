@@ -3,30 +3,26 @@ class Solution:
 
         graphX = defaultdict(list)
         graphY = defaultdict(list)
+        
         for x,y in stones:
             graphX[x].append(y)
             graphY[y].append(x)
-        
-       
-        connectedComponent = 0
+            
         visited = set()
         
+        def dfs(xo,yo):
+            if (xo,yo) not in visited:
+                visited.add((xo,yo))
+                for nebY in graphX[xo]:
+                    dfs(xo,nebY)
+                for nebX in graphY[yo]:
+                    dfs(nebX,yo)
+        
+        connectedComponent = 0
+        
         for x,y in stones:
-            ### if the current stone has not been visited, do a BFS from it.
             if (x,y) not in visited:
-                q = deque([(x,y)])
-                while q:
-                    xo,yo = q.popleft()
-                    
-                    if (xo,yo) not in visited:
-                        visited.add((xo,yo))
-                        ### since we used two hash map to store the neighbors,
-                        ### we need to get all the neighbors fron the current stone.
-                        for neY in graphX[xo]:
-                            q.append((xo,neY))
-                        for neX in graphY[yo]:
-                            q.append((neX,yo))
-                ### we find another connected component
+                dfs(x,y)
                 connectedComponent += 1
         
         return len(stones)-connectedComponent
