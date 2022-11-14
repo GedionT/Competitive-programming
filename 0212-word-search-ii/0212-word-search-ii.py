@@ -5,10 +5,10 @@ class TrieNode:
     
     def add_word(self, word):
         cur = self
-        for c in word:
-            if c not in cur.children:
-                cur.children[c] = TrieNode()
-            cur = cur.children[c]
+        for char in word:
+            if char not in cur.children:
+                cur.children[char] = TrieNode()
+            cur = cur.children[char]
         cur.is_word = True
 
 class Solution:    
