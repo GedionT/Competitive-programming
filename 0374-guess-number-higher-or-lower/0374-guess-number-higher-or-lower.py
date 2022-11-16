@@ -22,4 +22,4 @@ class Solution:
                 return mid
             
         
-        return mid
+        return -1
