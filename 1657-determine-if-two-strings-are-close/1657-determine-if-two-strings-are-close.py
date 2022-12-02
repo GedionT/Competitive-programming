@@ -19,7 +19,7 @@ class Solution:
         biner_1.sort()
         biner_2.sort()
 
-        if biner_1[:] == biner_2[:]:
+        if biner_1 == biner_2:
             return True
         return False
     
