@@ -4,25 +4,19 @@ class Solution:
         if len(word1) != len(word2):
             return False
 
-        biner_1 = [0]*26
-        biner_2 = [0]*26
+        c1 = Counter(word1)
+        c2 = Counter(word2)
         
-        for i in word1:
-            biner_1[ord(i)-97]+=1
-        for i in word2:
-            biner_2[ord(i)-97]+=1
-            
-        for i in range(26):
-            if (biner_1[i]>0 and biner_2[i]==0) or (biner_1[i]==0 and biner_2[i]>0):
-                return False   
-                
-        biner_1.sort()
-        biner_2.sort()
-
-        if biner_1 == biner_2:
+        count1 = sorted(c1.values())
+        count2 = sorted(c2.values())
+        
+        set1 = set(word1)
+        set2 = set(word2)
+        
+        if count1 == count2 and set1 == set2:
             return True
+        
         return False
-    
 
         
         
