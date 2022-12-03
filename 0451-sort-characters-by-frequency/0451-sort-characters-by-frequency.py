@@ -8,11 +8,17 @@ class Solution:
                 count[c] = 1
             else:
                 count[c] += 1
-            
-        sort_freq = sorted(count, key=count.get, reverse=True)
+           
+        heap = []
         
-        res = ""
-        for char in sort_freq:
-            res += char * count[char]
+        for char, freq in count.items():
+            heapq.heappush(heap, (-freq, char))
             
-        return res
+            
+        ans = ''
+        while heap:
+            frq, char = heapq.heappop(heap)
+            ans += char * (-frq)
+            
+        return ans
+        
