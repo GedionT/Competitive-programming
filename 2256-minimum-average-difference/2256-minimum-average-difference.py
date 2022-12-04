@@ -1,27 +1,27 @@
 class Solution:
     def minimumAverageDifference(self, nums: List[int]) -> int:
         min_avg_diff = float('inf')
-        mins = []
+        res = -1
         
-        forward_prefix = [nums[0]]
-        backward_prefix = [nums[-1]]
+        prefix = [nums[0]]
+        suffix = [nums[-1]]
         
         for i in range(1, len(nums)):
-            forward_prefix.append(forward_prefix[-1] + nums[i])
+            prefix.append(prefix[-1] + nums[i])
         
         for i in range(len(nums)-2, -1, -1):
-            backward_prefix.append(backward_prefix[-1] + nums[i])
-        backward_prefix = backward_prefix[::-1]
+            suffix.append(suffix[-1] + nums[i])
+        suffix = suffix[::-1]
                 
         for i in range(len(nums)):
             if i+1 == len(nums):
-                curr_avg_diff = forward_prefix[i]//(i+1)
+                curr_avg_diff = prefix[i]//(i+1)
             else:
-                curr_avg_diff = abs( (forward_prefix[i]//(i+1)) - ((backward_prefix[i] - nums[i]) // (len(nums) - (i+1))) )
-            min_avg_diff = min(min_avg_diff, curr_avg_diff)
-            mins.append((min_avg_diff, i))
-        
-        mins.sort()
+                curr_avg_diff = abs( (prefix[i]//(i+1)) - ((suffix[i] - nums[i]) // (len(nums) - (i+1))) )
             
-        return mins[0][1]
+            if curr_avg_diff < min_avg_diff:
+                min_avg_diff = curr_avg_diff
+                res = i
+            
+        return res
         
